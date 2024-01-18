@@ -1,6 +1,7 @@
 ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .search-form {
@@ -45,6 +46,12 @@ ul {
 
 .search-btn:hover {
   background-color: #6c8cff;
+}
+
+.load-btn-cont {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
 }
 
 .gallery {
