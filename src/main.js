@@ -118,6 +118,10 @@ function handleSubmit(evt) {
     })
     .catch(error => {
       console.log(error);
+      iziToast.error({
+        position: 'topRight',
+        message: 'An error has occured',
+      });
     });
 }
 
