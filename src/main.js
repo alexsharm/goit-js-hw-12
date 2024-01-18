@@ -17,8 +17,9 @@ function handleSubmit(evt) {
   evt.preventDefault();
   gallery.innerHTML = '';
   loader.classList.remove('is-hidden');
-  axios
-    .get(`https://pixabay.com/api/`, {
+
+  async function getPhotos() {
+    const response = await axios.get(`https://pixabay.com/api/`, {
       params: {
         key: '41849912-0888eabd10c40a0c420151dd5',
         q: evt.target.elements.search.value.trim(),
@@ -26,10 +27,14 @@ function handleSubmit(evt) {
         orientation: 'horizontal',
         safesearch: 'true',
       },
-    })
-    .then(response => {
+    });
+    return response.data;
+  }
+
+  getPhotos()
+    .then(data => {
       loader.classList.add('is-hidden');
-      if (response.data.hits.length === 0) {
+      if (data.hits.length === 0) {
         const errorAlert = iziToast.error({
           message:
             'Sorry, there are no images matching <br> your search query. Please try again!',
@@ -37,7 +42,7 @@ function handleSubmit(evt) {
           class: 'error-alert',
         });
       } else {
-        const htmlMarkup = response.data.hits
+        const htmlMarkup = data.hits
           .map(
             image =>
               `
