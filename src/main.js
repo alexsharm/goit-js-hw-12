@@ -89,7 +89,6 @@ function handleSubmit(evt) {
 
   getPhotos()
     .then(data => {
-      console.log(data);
       totalPages = Math.ceil(data.totalHits / perPage);
       loader.classList.add('is-hidden');
       if (data.hits.length === 0) {
@@ -103,8 +102,6 @@ function handleSubmit(evt) {
         gallery.insertAdjacentHTML('beforeend', renderHtml(data));
         loadBtn.classList.remove('is-hidden');
         galleryLightbox.refresh();
-        console.log(page);
-        console.log(totalPages);
         if (page == totalPages) {
           loadBtn.classList.add('is-hidden');
           iziToast.error({
@@ -142,7 +139,6 @@ function handleClick() {
       .querySelector('.gallery-item')
       .getBoundingClientRect();
     const galleryCardHeight = galleryCardProperties.height;
-    console.log(galleryCardHeight);
     window.scrollBy({
       top: 2 * galleryCardHeight,
       behavior: 'smooth',
